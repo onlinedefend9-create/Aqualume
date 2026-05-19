@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { motion, AnimatePresence } from "motion/react";
-import { X, CheckCircle2, AlertCircle, Loader2, Plus, Minus, ShoppingBag } from "lucide-react";
+import { X, CheckCircle2, AlertCircle, Loader2, Plus, Minus } from "lucide-react";
+import productImg from "../assets/images/aqualume_product_shot_studio_1779185939933.png";
 
 interface CheckoutProps {
   isOpen: boolean;
@@ -128,9 +129,7 @@ export const Checkout = ({ isOpen, onClose, price, currency }: CheckoutProps) =>
                 >
                   <div className="flex flex-col sm:flex-row items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
                     <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl overflow-hidden border border-gray-100 flex-shrink-0 shadow-sm p-1">
-                      <div className="flex items-center justify-center w-full h-full bg-gray-100">
-                        <ShoppingBag className="text-gray-400" size={32} />
-                      </div>
+                      <img src={productImg} alt="AquaLume" className="w-full h-full object-cover" />
                     </div>
                     <div className="flex-1 text-center sm:text-left">
                       <h4 className="font-bold text-brand-dark leading-tight text-sm">AquaLume™</h4>

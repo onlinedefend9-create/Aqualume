@@ -35,6 +35,11 @@ import React, { useState, useEffect, useMemo } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Checkout } from "./components/Checkout";
+import { Footer } from "./components/Footer";
+import { PrivacyPolicy } from "./pages/PrivacyPolicy";
+import { TermsOfService } from "./pages/TermsOfService";
+import { ShippingPolicy } from "./pages/ShippingPolicy";
+import { RefundPolicy } from "./pages/RefundPolicy";
 
 // Components
 const VectorDots = () => (
@@ -126,6 +131,12 @@ export default function App() {
     // Adding a generic test data attribute for better compatibility in sandboxed environments
     "data-sdk-integration-source": "button-factory"
   }), []);
+
+  const pathname = window.location.pathname;
+  if (pathname === '/legal/privacy') return <PrivacyPolicy />;
+  if (pathname === '/legal/terms') return <TermsOfService />;
+  if (pathname === '/legal/shipping') return <ShippingPolicy />;
+  if (pathname === '/legal/refund') return <RefundPolicy />;
 
   return (
     <PayPalScriptProvider options={paypalOptions}>
@@ -714,9 +725,9 @@ export default function App() {
 
                <div className="pt-16 space-y-10">
                   <div className="flex flex-wrap justify-center gap-16 opacity-40 hover:opacity-100 transition-opacity duration-1000">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-8 invert" loading="lazy" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" className="h-8 invert" loading="lazy" />
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_Pay_logo.svg" alt="Apple Pay" className="h-10 invert" loading="lazy" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal" className="h-8 w-auto object-contain opacity-70 hover:opacity-100 hover:scale-105 transition-all duration-300" loading="lazy" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" className="h-8 w-auto object-contain brightness-0 invert opacity-70 hover:opacity-100 hover:scale-105 transition-all duration-300" loading="lazy" />
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="MasterCard" className="h-8 w-auto object-contain brightness-0 invert opacity-70 hover:opacity-100 hover:scale-105 transition-all duration-300" loading="lazy" />
                   </div>
                   <div className="flex items-center justify-center gap-8 text-[10px] uppercase font-black tracking-[0.5em] text-gray-500">
                      <span>Worldwide Express</span>
@@ -751,70 +762,10 @@ export default function App() {
 
       </main>
 
-      {/* Footer */}
-      <footer className="py-24 bg-white border-t border-gray-100 overflow-hidden text-brand-dark">
-        <div className="container mx-auto px-6 max-w-7xl">
-          <div className="grid lg:grid-cols-2 gap-20 items-start">
-             <div className="space-y-10 max-w-md">
-                <div className="text-2xl font-black tracking-tighter flex items-center gap-2">
-                  <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
-                    <Droplets className="text-brand-dark w-6 h-6" />
-                  </div>
-                  <span className="text-current font-secondary tracking-tighter uppercase text-xl">Aqua<span className="text-primary font-black">Lume™</span></span>
-                </div>
-                <p className="text-gray-500 font-secondary text-base">
-                  Innovative emergency lighting powered by science—reliable brightness with just salt and water. Ready for any situation.
-                </p>
-                <div className="flex flex-wrap gap-4">
-                  <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-400">
-                    <Leaf className="w-4 h-4 text-green-500" /> Eco-Friendly
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-400">
-                    <Shield className="w-4 h-4 text-primary" /> Full Warranty
-                  </div>
-                  <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-400">
-                    <Truck className="w-4 h-4 text-primary" /> Express Shipping
-                  </div>
-                </div>
-             </div>
-
-             <div className="grid grid-cols-2 lg:grid-cols-3 gap-10">
-                <div className="space-y-6">
-                  <h4 className="text-[10px] uppercase font-black tracking-[0.2em] text-gray-300 border-b border-gray-100 pb-2">Links</h4>
-                  <ul className="space-y-4 text-sm font-black text-gray-600">
-                    <li><a href="#" className="hover:text-brand-blue transition-colors">Home</a></li>
-                    <li><a href="#" className="hover:text-brand-blue transition-colors">Contact</a></li>
-                  </ul>
-                </div>
-                <div className="space-y-6">
-                  <h4 className="text-[10px] uppercase font-black tracking-[0.2em] text-gray-300 border-b border-gray-100 pb-2">Policies</h4>
-                  <ul className="space-y-4 text-sm font-black text-gray-600">
-                    <li><a href="#" className="hover:text-brand-blue transition-colors font-black">Privacy</a></li>
-                    <li><a href="#" className="hover:text-brand-blue transition-colors font-black">Returns</a></li>
-                    <li><a href="#" className="hover:text-brand-blue transition-colors font-black">Shipping</a></li>
-                  </ul>
-                </div>
-                <div className="col-span-2 md:col-span-1 space-y-6">
-                   <h4 className="text-[10px] uppercase font-black tracking-[0.2em] text-gray-300 border-b border-gray-100 pb-2">Emergency ready tips</h4>
-                   <div className="flex gap-2">
-                     <label htmlFor="email-newsletter" className="sr-only">Enter your email for emergency ready tips</label>
-                     <input id="email-newsletter" type="email" placeholder="Enter email" className="bg-gray-50 border border-gray-100 px-4 py-3 rounded-2xl text-sm font-secondary w-full focus:outline-none focus:ring-1 focus:ring-brand-blue" />
-                     <button className="bg-brand-dark text-white p-3 rounded-2xl hover:bg-black transition-colors shadow-lg" aria-label="Subscribe to newsletter"><ArrowRight size={20} aria-hidden="true" /></button>
-                   </div>
-                </div>
-             </div>
-          </div>
-          <div className="pt-24 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-100 mt-20 opacity-30">
-            <p className="text-[10px] font-black uppercase tracking-[0.4em]">© 2026 AquaLume™ Science Global.</p>
-            <p className="text-[10px] font-black uppercase tracking-[0.4em]">Secure • Sustainable • Reliable</p>
-          </div>
-        </div>
-      </footer>
-
       {/* Desktop Sticky Buy Now */}
       <motion.div 
         style={{ opacity: buyButtonOpacity, y: buyButtonY }}
-        className="hidden lg:block fixed bottom-10 right-10 z-[70]"
+        className="hidden lg:block fixed bottom-24 right-10 z-[70]"
       >
         <button 
           onClick={handleCheckout}
@@ -829,6 +780,8 @@ export default function App() {
           </div>
         </button>
       </motion.div>
+
+      <Footer />
       </div>
     </PayPalScriptProvider>
   );
