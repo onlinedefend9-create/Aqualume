@@ -133,28 +133,28 @@ export default function App() {
         <Checkout 
           isOpen={isCheckoutOpen} 
           onClose={() => setIsCheckoutOpen(false)} 
-          price="32.40" 
+          price="35.00" 
           currency="USD" 
         />
       {/* Navigation */}
-      <header className={`fixed top-0 w-full z-[60] transition-all duration-500 ${isScrolled ? 'glass py-3 shadow-lg shadow-black/5' : 'bg-transparent py-8'}`}>
+      <header className={`fixed top-0 w-full z-[60] transition-all duration-500 ${isScrolled ? 'glass py-3 shadow-lg shadow-black/5 text-brand-dark' : 'bg-transparent py-8 text-white'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <a href="#" className="text-2xl font-black tracking-tighter flex items-center gap-2">
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/30" aria-hidden="true">
-              <Droplets className="text-foreground w-6 h-6" />
+              <Droplets className="text-brand-dark w-6 h-6" />
             </div>
-            <span className="text-foreground">WATTer LAMP<span className="text-primary">™</span></span>
+            <span className="text-current font-secondary tracking-tighter uppercase text-xl">Aqua<span className="text-primary font-black">Lume™</span></span>
           </a>
           <div className="flex items-center gap-6">
-            <nav className="hidden lg:flex items-center gap-8 text-sm font-bold text-muted-foreground" aria-label="Main Navigation">
-               <a href="#how-it-works" className="hover:text-foreground transition-colors">How it works</a>
-               <a href="#features" className="hover:text-foreground transition-colors">Features</a>
-               <a href="#reviews" className="hover:text-foreground transition-colors">Reviews</a>
+            <nav className={`hidden lg:flex items-center gap-8 text-sm font-bold ${isScrolled ? 'text-gray-400' : 'text-gray-300'}`} aria-label="Main Navigation">
+               <a href="#how-it-works" className={`hover:text-primary transition-colors ${isScrolled ? 'hover:text-brand-dark' : 'hover:text-primary'}`}>How it works</a>
+               <a href="#features" className={`hover:text-primary transition-colors ${isScrolled ? 'hover:text-brand-dark' : 'hover:text-primary'}`}>Features</a>
+               <a href="#reviews" className={`hover:text-primary transition-colors ${isScrolled ? 'hover:text-brand-dark' : 'hover:text-primary'}`}>Reviews</a>
             </nav>
             <button 
               onClick={handleCheckout}
-              aria-label="Order WATTer LAMP now"
-              className="px-8 py-3 bg-foreground text-background rounded-full text-sm font-black hover:bg-black transition-all hover:scale-105 active:scale-95 shadow-xl shadow-black/10"
+              aria-label="Order AquaLume now"
+              className={`px-8 py-3 rounded-full text-sm font-black transition-all hover:scale-105 active:scale-95 shadow-xl ${isScrolled ? 'bg-brand-dark text-white shadow-black/10' : 'bg-white text-brand-dark shadow-white/10'}`}
             >
               Get Yours Now
             </button>
@@ -164,8 +164,8 @@ export default function App() {
 
       <main>
         {/* 1. Hero Section - Cinematic Upgrade */}
-        <section className="relative pt-32 pb-16 md:pt-48 md:pb-32 overflow-hidden bg-white">
-          <div className="absolute top-0 right-0 p-20 opacity-30 select-none pointer-events-none">
+        <section className="relative pt-32 pb-16 md:pt-48 md:pb-32 overflow-hidden bg-brand-dark">
+          <div className="absolute top-0 right-0 p-20 opacity-5 select-none pointer-events-none text-white">
             <VectorDots />
           </div>
           <div className="container mx-auto px-6">
@@ -177,14 +177,20 @@ export default function App() {
                 className="space-y-8 max-w-5xl"
               >
                 <div className="flex justify-center gap-4 flex-wrap">
-                   <TrustBadge icon={<Activity size={12} />} text="Survival Innovation" />
-                   <TrustBadge icon={<Globe size={12} />} text="Worldwide Shipping" />
+                   <div className="flex items-center gap-3 px-6 py-4 glass-dark rounded-3xl border border-white/10 shadow-2xl animate-fade-in backdrop-blur-xl">
+                      <div className="text-primary"><Activity size={12} /></div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Survival Innovation</span>
+                   </div>
+                   <div className="flex items-center gap-3 px-6 py-4 glass-dark rounded-3xl border border-white/10 shadow-2xl animate-fade-in backdrop-blur-xl">
+                      <div className="text-primary"><Globe size={12} /></div>
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em] text-white">Worldwide Shipping</span>
+                   </div>
                 </div>
-                <h1 className="text-6xl md:text-[9rem] font-black text-brand-dark leading-[0.85] tracking-tighter">
+                <h1 className="text-6xl md:text-[9rem] font-black text-white leading-[0.85] tracking-tighter">
                   No Batteries. <br /> Just <span className="text-primary italic animate-pulse">Salt + Water.</span>
                 </h1>
-                <p className="text-gray-500 text-xl md:text-3xl max-w-3xl mx-auto font-secondary leading-relaxed font-light">
-                  The ultimate survival-tech light. Engineered for emergency readiness, outdoor reliability, and battery-free innovation. 
+                <p className="text-gray-400 text-xl md:text-3xl max-w-3xl mx-auto font-secondary leading-relaxed font-light">
+                  Meet AquaLume™. The ultimate survival-tech light. Engineered for emergency readiness, outdoor reliability, and battery-free innovation. 
                 </p>
                 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-8 pt-8">
@@ -196,17 +202,17 @@ export default function App() {
                   >
                     Get Yours Now <ArrowRight size={32} className="group-hover:translate-x-2 transition-transform" />
                   </motion.button>
-                  <div className="flex items-center gap-6 text-left p-2 glass rounded-full pr-8 border border-white/50">
+                  <div className="flex items-center gap-6 text-left p-2 glass-dark rounded-full pr-8 border border-white/5 backdrop-blur-xl">
                     <div className="flex -space-x-4">
                       {[1,2,3,4,5].map(i => (
-                        <img key={i} src={`https://i.pravatar.cc/150?u=user${i+88}`} className="w-12 h-12 rounded-full border-4 border-white shadow-xl" alt="Reviewer" />
+                        <img key={i} src={`https://i.pravatar.cc/150?u=user${i+88}`} className="w-12 h-12 rounded-full border-4 border-brand-dark shadow-xl" alt="Reviewer" />
                       ))}
                     </div>
                     <div>
                       <div className="flex gap-0.5 text-primary">
                         {[...Array(5)].map((_, i) => <Star key={i} size={10} className="fill-current" />)}
                       </div>
-                      <p className="text-[10px] font-black text-brand-dark uppercase tracking-widest mt-1">2,400+ Trusted Reviews</p>
+                      <p className="text-[10px] font-black text-white uppercase tracking-widest mt-1">2,400+ Trusted Reviews</p>
                     </div>
                   </div>
                 </div>
@@ -219,33 +225,33 @@ export default function App() {
                 className="relative w-full max-w-6xl group mt-10"
               >
                 <div className="absolute inset-0 bg-primary/20 blur-[150px] rounded-full scale-90 -z-10 animate-pulse" />
-                <div className="relative rounded-[4rem] md:rounded-[6rem] overflow-hidden shadow-[0_80px_160px_-40px_rgba(0,0,0,0.2)] border-[10px] md:border-[20px] border-white group-hover:shadow-[0_100px_200px_-50px_rgba(162,214,54,0.3)] transition-all duration-1000">
+                <div className="relative rounded-[4rem] md:rounded-[6rem] overflow-hidden shadow-[0_100px_200px_-50px_rgba(0,0,0,0.8)] border-[1px] border-white/10 group-hover:shadow-[0_120px_250px_-60px_rgba(162,214,54,0.3)] transition-all duration-1000">
                   <img 
-                    src="input_file_0.png" 
-                    alt="WATTer LAMP Premium Showcase" 
-                    className="w-full h-auto transform group-hover:scale-110 transition-transform duration-[4s] ease-out"
+                    src="/src/assets/images/aqualume_hero_cinematic_v2_1779194153162.png" 
+                    alt="AquaLume Master Product Render" 
+                    className="w-full h-auto transform group-hover:scale-105 transition-transform duration-[4s] ease-out"
                     loading="eager"
                     referrerPolicy="no-referrer"
                   />
                   
                   {/* Glassmorphism Floating Tech Overlay */}
                   <div className="absolute top-12 right-12 hidden md:block">
-                    <div className="glass px-8 py-6 rounded-[3rem] border border-white/50 shadow-2xl space-y-2 backdrop-blur-3xl">
+                    <div className="glass-dark px-8 py-6 rounded-[3rem] border border-white/10 shadow-2xl space-y-2 backdrop-blur-3xl">
                       <p className="text-[11px] font-black uppercase text-primary tracking-[0.3em]">Proprietary Tech</p>
-                      <p className="text-xl font-black text-brand-dark leading-tight">100% Electrolytic <br /> Power Delivery</p>
+                      <p className="text-xl font-black text-white leading-tight">100% Electrolytic <br /> Power Delivery</p>
                     </div>
                   </div>
                   
                   <div className="absolute bottom-12 left-12 hidden md:block text-left">
-                    <div className="glass p-10 rounded-[4rem] border border-white/50 shadow-2xl space-y-6 backdrop-blur-3xl">
+                    <div className="glass-dark p-10 rounded-[4rem] border border-white/10 shadow-2xl space-y-6 backdrop-blur-3xl">
                       <div className="flex gap-4">
-                        <div className="w-12 h-12 rounded-[1.5rem] bg-primary/20 flex items-center justify-center text-primary"><Zap size={24} /></div>
-                        <div className="w-12 h-12 rounded-[1.5rem] bg-primary/20 flex items-center justify-center text-primary"><Droplets size={24} /></div>
-                        <div className="w-12 h-12 rounded-[1.5rem] bg-primary/20 flex items-center justify-center text-primary"><ShieldCheck size={24} /></div>
+                        <div className="w-12 h-12 rounded-[1.5rem] bg-primary/10 flex items-center justify-center text-primary"><Zap size={24} /></div>
+                        <div className="w-12 h-12 rounded-[1.5rem] bg-primary/10 flex items-center justify-center text-primary"><Droplets size={24} /></div>
+                        <div className="w-12 h-12 rounded-[1.5rem] bg-primary/10 flex items-center justify-center text-primary"><ShieldCheck size={24} /></div>
                       </div>
                       <div>
-                        <p className="text-3xl font-black text-brand-dark tracking-tighter">IP67 Waterproof</p>
-                        <p className="text-xs text-gray-500 font-bold uppercase tracking-[0.2em] mt-1">Engineered for extreme survival</p>
+                        <p className="text-3xl font-black text-white tracking-tighter">IP67 Waterproof</p>
+                        <p className="text-xs text-gray-400 font-bold uppercase tracking-[0.2em] mt-1">Engineered for extreme survival</p>
                       </div>
                     </div>
                   </div>
@@ -278,7 +284,7 @@ export default function App() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
-              {/* Feature 1: Camping/Adventure */}
+              {/* Feature 1: Family Blackout Emergency */}
               <motion.div 
                 whileInView={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: 50 }}
@@ -286,8 +292,8 @@ export default function App() {
                 className="md:col-span-12 relative rounded-[4rem] md:rounded-[6rem] overflow-hidden group h-[600px] md:h-[800px]"
               >
                 <img 
-                  src="/src/assets/images/watter_lamp_lifestyle_camping_1779187223703.png" 
-                  alt="WATTer LAMP Camping usage" 
+                  src="/src/assets/images/aqualume_lifestyle_blackout_home_1779194189117.png" 
+                  alt="AquaLume Emergency Blackout Safety" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[5s] ease-out"
                   loading="lazy"
                   referrerPolicy="no-referrer"
@@ -296,15 +302,15 @@ export default function App() {
                 <div className="absolute bottom-16 left-8 md:bottom-24 md:left-24 space-y-8 max-w-4xl">
                   <div className="inline-flex items-center gap-3 px-6 py-3 glass rounded-full border border-white/20">
                     <div className="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
-                    <span className="text-[10px] font-black uppercase tracking-widest text-white">Adrenaline Tech Certified</span>
+                    <span className="text-[10px] font-black uppercase tracking-widest text-white">Trust Certified: Emergency Ready</span>
                   </div>
-                  <h3 className="text-5xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter">The ultimate <br /> wilderness hack.</h3>
-                  <p className="text-gray-300 font-secondary text-lg md:text-2xl max-w-2xl leading-relaxed">Lightweight, rugged, and completely independent from the grid. Because in the backcountry, batteries are your biggest liability.</p>
-                  <button onClick={handleCheckout} className="btn-primary w-fit px-12 group">Expedition Ready <ArrowRight className="group-hover:translate-x-2 transition-transform" /></button>
+                  <h3 className="text-5xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter">Safety for what <br /> matters most.</h3>
+                  <p className="text-gray-300 font-secondary text-lg md:text-2xl max-w-2xl leading-relaxed">When the grid fails, your family shouldn't be left in the dark. AquaLume™ provides immediate, dependable safety without the anxiety of dead batteries.</p>
+                  <button onClick={handleCheckout} className="btn-primary w-fit px-12 group">Protect My Home <ArrowRight className="group-hover:translate-x-2 transition-transform" /></button>
                 </div>
               </motion.div>
 
-              {/* Feature 2: Emergency Blackout */}
+              {/* Feature 2: Rain/Wilderness Survival */}
               <motion.div 
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: -50 }}
@@ -312,17 +318,17 @@ export default function App() {
                 className="md:col-span-7 relative rounded-[4rem] group overflow-hidden h-[500px] md:h-[700px]"
               >
                 <img 
-                  src="/src/assets/images/watter_lamp_lifestyle_blackout_1779187241594.png" 
-                  alt="WATTer LAMP Emergency Blackout" 
+                  src="/src/assets/images/aqualume_rain_waterproof_action_1779194224010.png" 
+                  alt="AquaLume Wet Outdoor Survival" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[3s]"
                   loading="lazy"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
                 <div className="absolute bottom-12 left-12 space-y-4 right-12">
-                   <span className="px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-black uppercase text-white tracking-widest border border-white/10">Blackout Protocol</span>
-                  <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter">Your home kit, <br /> evolved.</h3>
-                  <p className="text-gray-400 font-secondary text-lg leading-relaxed max-w-lg">Don’t reach for a flashlight with dead batteries when the storm hits. WATTer LAMP™ is ready instantly, even after years in a drawer.</p>
+                   <span className="px-4 py-1.5 bg-white/20 backdrop-blur-md rounded-full text-[10px] font-black uppercase text-white tracking-widest border border-white/10">Expedition Spec</span>
+                  <h3 className="text-3xl md:text-5xl font-black text-white tracking-tighter">Thrives where <br /> others fail.</h3>
+                  <p className="text-gray-400 font-secondary text-lg leading-relaxed max-w-lg">Engineered for the humidity of the jungle and the damp of the forest floor. Completely waterproof, rust-resistant, and ready for any storm.</p>
                 </div>
               </motion.div>
 
@@ -334,7 +340,7 @@ export default function App() {
                 className="md:col-span-5 relative rounded-[4rem] group overflow-hidden h-[500px] md:h-[700px]"
               >
                 <img 
-                  src="/src/assets/images/watter_lamp_waterproof_tactical_1779188391501.png" 
+                  src="/src/assets/images/aqualume_lifestyle_tent_night_1779194171975.png" 
                   alt="Waterproof Performance" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[3s]"
                   loading="lazy"
@@ -350,7 +356,61 @@ export default function App() {
           </div>
         </section>
 
-        {/* 4. How It Works - Premium 3-Step */}
+        {/* 4. Technical Dive - Apple Style Product Reveal */}
+        <section className="section-padding bg-brand-dark relative overflow-hidden">
+          <div className="container mx-auto px-6 max-w-7xl">
+            <div className="grid lg:grid-cols-2 gap-20 items-center">
+              <div className="relative group">
+                 <div className="absolute inset-0 bg-primary/20 blur-[120px] rounded-full scale-125 -z-10 animate-pulse" />
+                 <div className="relative rounded-[4rem] overflow-hidden border border-white/5 shadow-2xl shadow-black/80">
+                    <img 
+                      src="/src/assets/images/aqualume_macro_led_detail_1779194241704.png" 
+                      alt="AquaLume Technical Specs Diagram" 
+                      className="w-full h-auto transform group-hover:scale-105 transition-transform duration-[3s] ease-out"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                    <div className="absolute bottom-10 left-10 right-10 flex border-t border-white/10 pt-8 gap-10">
+                       <div className="space-y-1">
+                          <p className="text-[9px] font-black text-primary uppercase tracking-[0.3em]">Magnesium Core</p>
+                          <p className="text-white text-lg font-black tracking-tighter">99.9% Purity</p>
+                       </div>
+                       <div className="space-y-1">
+                          <p className="text-[9px] font-black text-primary uppercase tracking-[0.3em]">Voltage Stability</p>
+                          <p className="text-white text-lg font-black tracking-tighter">3.7V Peak</p>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+
+              <div className="space-y-12">
+                <div className="space-y-6">
+                   <span className="text-[10px] font-black uppercase tracking-[0.5em] text-primary">Technical Superiority</span>
+                   <h2 className="text-5xl md:text-7xl font-black text-white tracking-tighter leading-none">
+                     Energy from <br /> <span className="text-primary italic italic animate-pulse">Salt Ions.</span>
+                   </h2>
+                   <p className="text-gray-400 font-secondary text-xl leading-relaxed">
+                     By leveraging the natural conductivity of salts, AquaLume™ creates a high-efficiency electrolyte reaction that powers high-density LED arrays. It’s not just a light; it’s a portable power plant.
+                   </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                   <div className="p-8 glass-dark rounded-[2.5rem] space-y-4 border border-white/5 hover:border-white/20 transition-all">
+                      <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary"><ShieldCheck size={28} /></div>
+                      <h4 className="text-xl font-black text-white tracking-tight leading-none uppercase tracking-tighter">Zero Charge Loss</h4>
+                      <p className="text-gray-500 text-sm font-secondary">Dormant magnesium doesn't degrade. 10+ year shelf life guaranteed.</p>
+                   </div>
+                   <div className="p-8 glass-dark rounded-[2.5rem] space-y-4 border border-white/5 hover:border-white/20 transition-all">
+                      <div className="w-12 h-12 bg-primary/10 rounded-2xl flex items-center justify-center text-primary"><Zap size={28} /></div>
+                      <h4 className="text-xl font-black text-white tracking-tight leading-none uppercase tracking-tighter">Instant On</h4>
+                      <p className="text-gray-500 text-sm font-secondary">No solar panels to deploy or cranks to turn. Light in 5 seconds.</p>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 5. How It Works - Premium 3-Step */}
         <section id="how-it-works" className="section-padding bg-white relative overflow-hidden">
           <div className="container mx-auto px-6 max-w-7xl">
             <div className="max-w-4xl mx-auto text-center space-y-6 mb-24">
@@ -364,23 +424,23 @@ export default function App() {
                 { 
                   step: "01", 
                   title: "Add Saltwater", 
-                  desc: "Pour 15g of salt and 300ml of water into the chamber.", 
+                  desc: "Pour 15g of salt and 300ml of water into the chemical chamber.", 
                   icon: <Droplets className="w-12 h-12" />,
-                  img: "/src/assets/images/watter_lamp_detail_activation_1779187279374.png"
+                  img: "/src/assets/images/aqualume_gear_setup_survival_1779194209010.png"
                 },
                 { 
                   step: "02", 
                   title: "Activate", 
                   desc: "Shake gently to initiate the electrolytic reaction instantly.", 
                   icon: <RotateCcw className="w-12 h-12" />,
-                  img: "input_file_0.png"
+                  img: "/src/assets/images/aqualume_macro_led_detail_1779194241704.png"
                 },
                 { 
                   step: "03", 
                   title: "Steady Light", 
-                  desc: "Enjoy up to 120 hours of reliable LED brightness.", 
+                  desc: "Enjoy up to 120 hours of high-performance LED brightness.", 
                   icon: <Zap className="w-12 h-12" />,
-                  img: "/src/assets/images/watter_lamp_hero_minimal_1779187204366.png"
+                  img: "/src/assets/images/aqualume_hero_cinematic_v2_1779194153162.png"
                 }
               ].map((s, i) => (
                 <div key={i} className="group text-center space-y-10">
@@ -468,69 +528,75 @@ export default function App() {
         </section>
 
 
-      {/* 6. Social Proof - TikTok Style Feed */}
-      <section id="reviews" className="section-padding bg-white overflow-hidden">
+      {/* 6. Social Proof - Compact & Premium Review Cards */}
+      <section id="reviews" className="section-padding bg-white overflow-hidden py-24">
         <div className="container mx-auto px-6 max-w-7xl">
-           <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-24">
-               <div className="space-y-6 max-w-2xl">
-                  <span className="text-[10px] font-black uppercase tracking-[0.5em] text-primary">Community Voice</span>
-                  <h2 className="text-5xl md:text-8xl font-black tracking-tighter text-brand-dark leading-none">Real Stories, <br /> Real Ready.</h2>
+           <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-16">
+               <div className="space-y-4 max-w-2xl text-left">
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-primary">Global Vetting</span>
+                  <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-brand-dark leading-none">Trusted in <br /> conditions.</h2>
                </div>
-               <div className="flex items-center gap-2 group cursor-pointer">
-                  <span className="text-sm font-black uppercase tracking-widest text-gray-300 group-hover:text-primary transition-colors">See all 2,400+ reviews</span>
-                  <ArrowRight size={20} className="text-gray-200 group-hover:text-primary group-hover:translate-x-1 transition-all" />
+               <div className="flex items-center gap-2 group cursor-pointer pb-2">
+                  <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-300 group-hover:text-primary transition-colors border-b border-gray-100 pb-1">View 2,400+ Reports</span>
+                  <ArrowRight size={16} className="text-gray-200 group-hover:text-primary group-hover:translate-x-1 transition-all" />
                </div>
            </div>
 
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { 
                   name: "Megan R.", 
-                  loc: "Pacific Northwest", 
-                  txt: "Total lifesaver during our coastal storm. Batteries were flat, salt was in the cabinet. It just works.", 
-                  img: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=100&w=800",
-                  tag: "Emergency Kit"
+                  loc: "PNW", 
+                  txt: "Total lifesaver during our coastal storm. Batteries were dead, but salt was in the back. Simple physics for peace of mind.", 
+                  img: "https://i.pravatar.cc/150?u=user1",
+                  tag: "Emergency"
                 },
                 { 
                   name: "Jason L.", 
-                  loc: "Colorado Rockies", 
-                  txt: "I leave it in my go-bag 24/7. Peace of mind knowing it'll light up instantly regardless of age.", 
-                  img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=100&w=800",
-                  tag: "Backcountry"
+                  loc: "Rockies", 
+                  txt: "I leave it in my alpine go-bag 24/7. Knowing it won't leak or lose charge after years is everything.", 
+                  img: "https://i.pravatar.cc/150?u=user2",
+                  tag: "Survival"
                 },
                 { 
                   name: "Emily K.", 
-                  loc: "Desert Explorer", 
-                  txt: "Used it every night on our Moab trek. The glow is surprisingly warm and fills the entire tent.", 
-                  img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=100&w=800",
+                  loc: "Moab", 
+                  txt: "The light fill is incredibly warm. We used it inside our tent during the desert frost nights. Flawless.", 
+                  img: "https://i.pravatar.cc/150?u=user3",
                   tag: "Camping"
                 },
                 { 
                   name: "Marcus T.", 
-                  loc: "Urban Survivalist", 
-                  txt: "The science is cool, but the reliability is what sold me. Built like a specialized piece of tech.", 
-                  img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=100&w=800",
+                  loc: "Austin", 
+                  txt: "Real tactical build quality. This isn't a plastic toy—it's a deliberate piece of survival engineering.", 
+                  img: "https://i.pravatar.cc/150?u=user4",
                   tag: "Off-Grid"
                 }
               ].map((rev, i) => (
                 <motion.div 
-                  whileHover={{ y: -10 }}
+                  whileHover={{ y: -5 }}
                   key={i} 
-                  className="bg-gray-50 rounded-[3rem] overflow-hidden border border-gray-100 flex flex-col h-full group"
+                  className="bg-gray-50/50 p-6 rounded-[2rem] border border-gray-100 flex flex-col justify-between group h-full hover:bg-white hover:shadow-2xl hover:shadow-black/5 transition-all"
                 >
-                  <div className="aspect-[3/4] relative overflow-hidden">
-                     <img src={rev.img} alt={rev.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                     <div className="absolute top-6 left-6 px-4 py-2 glass rounded-2xl text-[9px] font-black uppercase text-white tracking-widest">{rev.tag}</div>
-                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                     <div className="absolute bottom-6 left-6 right-6">
-                        <div className="flex gap-0.5 mb-2 text-primary">
-                          {[...Array(5)].map((_, j) => <Star key={j} size={10} className="fill-current" />)}
-                        </div>
-                        <p className="text-white text-sm font-black tracking-tight">{rev.name} • {rev.loc}</p>
-                     </div>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                       <img src={rev.img} alt={rev.name} className="w-10 h-10 rounded-full border border-white shadow-sm" />
+                       <div className="text-left font-secondary">
+                          <p className="text-xs font-black tracking-tight text-brand-dark">{rev.name}</p>
+                          <p className="text-[9px] uppercase font-bold text-gray-300 tracking-widest leading-none">{rev.loc}</p>
+                       </div>
+                    </div>
+                    <div className="flex gap-0.5 text-primary">
+                      {[...Array(5)].map((_, j) => <Star key={j} size={8} className="fill-current" />)}
+                    </div>
+                    <p className="text-gray-500 font-secondary text-[13px] leading-snug text-left">"{rev.txt}"</p>
                   </div>
-                  <div className="p-8 flex-1">
-                     <p className="text-gray-500 font-secondary text-sm leading-relaxed italic">"{rev.txt}"</p>
+                  <div className="mt-6 pt-4 border-t border-gray-100 flex justify-between items-center">
+                     <span className="text-[8px] font-black uppercase text-gray-300 tracking-[0.2em] px-2 py-0.5 bg-white rounded-full border border-gray-50">{rev.tag}</span>
+                     <div className="flex items-center gap-1">
+                        <CheckCircle2 size={10} className="text-primary" />
+                        <span className="text-[8px] font-black text-primary/50 uppercase">Verified</span>
+                     </div>
                   </div>
                 </motion.div>
               ))}
@@ -547,7 +613,7 @@ export default function App() {
                   <div className="space-y-6">
                     <span className="text-[10px] font-black uppercase tracking-[0.5em] text-primary">Support Center</span>
                     <h2 className="text-6xl md:text-8xl font-black text-brand-dark tracking-tighter leading-none">Answers for <br /> explorers.</h2>
-                    <p className="font-secondary text-gray-400 text-xl max-w-xl leading-relaxed">WATTer LAMP™ is built for real-world stress—camping, storms, and survival. No gimmicks, just physics.</p>
+                    <p className="font-secondary text-gray-400 text-xl max-w-xl leading-relaxed">AquaLume™ is built for real-world stress—camping, storms, and survival. No gimmicks, just physics.</p>
                   </div>
                   <div className="grid grid-cols-2 gap-4">
                      <div className="p-6 bg-white rounded-3xl border border-gray-100 shadow-xl shadow-black/5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4 group">
@@ -565,7 +631,7 @@ export default function App() {
             <div className="space-y-2 bg-white p-6 md:p-16 rounded-[4rem] md:rounded-[6rem] shadow-2xl shadow-black/5 border border-gray-100">
                <FAQItem 
                 subtitle="Electrolysis 101"
-                question="How does WATTer LAMP™ work?"
+                question="How does AquaLume™ work?"
                 answer="It uses an electrolytic reaction between salt ions, water, and our proprietary Magnesium core to generate direct current. Zero external charging—just raw chemistry."
                />
                <FAQItem 
@@ -581,7 +647,7 @@ export default function App() {
                <FAQItem 
                 subtitle="Sustainability"
                 question="Is it safe for the environment?"
-                answer="Yes. We eliminate the toxic heavy metals found in standard batteries. WATTer LAMP™ is 100% recyclable and battery-waste free."
+                answer="Yes. We eliminate the toxic heavy metals found in standard batteries. AquaLume™ is 100% recyclable and battery-waste free."
                />
                <div className="pt-12">
                   <button onClick={handleCheckout} className="btn-primary w-full shadow-2xl group">
@@ -642,7 +708,7 @@ export default function App() {
                
                <div className="flex flex-col md:flex-row gap-8 justify-center pt-10">
                   <button onClick={handleCheckout} className="btn-primary px-16 py-8 text-3xl shadow-[0_40px_100px_rgba(162,214,54,0.4)] group">
-                    Secure My WATTer LAMP™ <ArrowRight size={40} className="group-hover:translate-x-3 transition-transform" />
+                    Secure My AquaLume™ <ArrowRight size={40} className="group-hover:translate-x-3 transition-transform" />
                   </button>
                </div>
 
@@ -676,7 +742,7 @@ export default function App() {
             onClick={handleCheckout}
             className="w-full bg-primary text-foreground py-6 rounded-[2.5rem] font-black text-xl flex items-center justify-between px-10 shadow-xl shadow-primary/30 active:scale-95 transition-all"
           >
-            <span>Get WATTer LAMP™ Now</span>
+            <span>Get AquaLume™ Now</span>
             <ArrowRight size={24} />
           </button>
         </motion.div>
@@ -691,23 +757,23 @@ export default function App() {
           <div className="grid lg:grid-cols-2 gap-20 items-start">
              <div className="space-y-10 max-w-md">
                 <div className="text-2xl font-black tracking-tighter flex items-center gap-2">
-                  <div className="w-10 h-10 bg-brand-blue rounded-xl flex items-center justify-center">
-                    <Droplets className="text-white w-6 h-6" />
+                  <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center">
+                    <Droplets className="text-brand-dark w-6 h-6" />
                   </div>
-                  <span>WATTer LAMP<span className="text-brand-blue">™</span></span>
+                  <span className="text-current font-secondary tracking-tighter uppercase text-xl">Aqua<span className="text-primary font-black">Lume™</span></span>
                 </div>
                 <p className="text-gray-500 font-secondary text-base">
                   Innovative emergency lighting powered by science—reliable brightness with just salt and water. Ready for any situation.
                 </p>
                 <div className="flex flex-wrap gap-4">
                   <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-400">
-                    <Leaf className="w-4 h-4 text-green-500" /> Écologique
+                    <Leaf className="w-4 h-4 text-green-500" /> Eco-Friendly
                   </div>
                   <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-400">
-                    <Shield className="w-4 h-4 text-brand-blue" /> Garantie
+                    <Shield className="w-4 h-4 text-primary" /> Full Warranty
                   </div>
                   <div className="flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-2xl text-[10px] font-black uppercase tracking-widest text-gray-400">
-                    <Truck className="w-4 h-4 text-brand-blue" /> Livraison
+                    <Truck className="w-4 h-4 text-primary" /> Express Shipping
                   </div>
                 </div>
              </div>
@@ -739,7 +805,7 @@ export default function App() {
              </div>
           </div>
           <div className="pt-24 flex flex-col md:flex-row justify-between items-center gap-6 border-t border-gray-100 mt-20 opacity-30">
-            <p className="text-[10px] font-black uppercase tracking-[0.4em]">© 2026 WATTer LAMP™ Global.</p>
+            <p className="text-[10px] font-black uppercase tracking-[0.4em]">© 2026 AquaLume™ Science Global.</p>
             <p className="text-[10px] font-black uppercase tracking-[0.4em]">Secure • Sustainable • Reliable</p>
           </div>
         </div>
@@ -759,7 +825,7 @@ export default function App() {
           </div>
           <div className="text-left">
             <p className="text-[9px] text-gray-400 uppercase tracking-widest font-black opacity-60">Ready for Anything</p>
-            <p className="text-xl tracking-tight">Order Now — 32.40 USD</p>
+            <p className="text-xl tracking-tight">Order Now — 35.00 USD</p>
           </div>
         </button>
       </motion.div>

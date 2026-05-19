@@ -84,13 +84,13 @@ export const Checkout = ({ isOpen, onClose, price, currency }: CheckoutProps) =>
               }
             }}
             exit={{ opacity: 0, scale: 0.95, y: 10, transition: { duration: 0.2 } }}
-            className="relative bg-white w-full max-w-md rounded-[3rem] shadow-2xl overflow-hidden p-8 md:p-12 space-y-8"
+            className="relative bg-white w-full max-w-lg rounded-3xl shadow-2xl max-h-[90vh] flex flex-col overflow-y-auto p-4 md:p-8 space-y-4"
           >
             <button 
               onClick={onClose}
-              className="absolute top-8 right-8 p-2 rounded-full bg-gray-50 hover:bg-gray-100 transition-colors"
+              className="absolute top-4 right-4 p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
             >
-              <X size={20} className="text-gray-400" />
+              <X size={16} className="text-gray-600" />
             </button>
 
             {orderStatus === "idle" && (
@@ -106,17 +106,17 @@ export const Checkout = ({ isOpen, onClose, price, currency }: CheckoutProps) =>
                     }
                   }
                 }}
-                className="space-y-8 text-center"
+                className="space-y-4"
               >
                 <motion.div 
                   variants={{
                     hidden: { opacity: 0, y: 10 },
                     show: { opacity: 1, y: 0 }
                   }}
-                  className="space-y-2"
+                  className="text-center"
                 >
-                  <h2 className="text-3xl font-black text-brand-dark tracking-tighter">Complete Order</h2>
-                  <p className="text-gray-400 font-secondary text-sm">Review your selection below</p>
+                  <h2 className="text-xl font-bold text-gray-900 tracking-tight">Checkout</h2>
+                  <p className="text-gray-500 text-xs mt-0.5">Review your order details below</p>
                 </motion.div>
 
                 <motion.div 
@@ -124,50 +124,52 @@ export const Checkout = ({ isOpen, onClose, price, currency }: CheckoutProps) =>
                     hidden: { opacity: 0, y: 10 },
                     show: { opacity: 1, y: 0 }
                   }}
-                  className="space-y-4"
+                  className="space-y-3"
                 >
-                  <div className="flex items-center gap-4 p-5 bg-gray-50 rounded-[2.5rem] border border-gray-100">
-                    <div className="w-24 h-24 bg-white rounded-3xl overflow-hidden border border-gray-100 flex-shrink-0 shadow-sm p-2">
-                      <img src="input_file_0.png" alt="Product" className="w-full h-full object-contain" />
+                  <div className="flex flex-col sm:flex-row items-center gap-3 p-3 bg-gray-50 rounded-xl border border-gray-100">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl overflow-hidden border border-gray-100 flex-shrink-0 shadow-sm p-1">
+                      <div className="flex items-center justify-center w-full h-full bg-gray-100">
+                        <ShoppingBag className="text-gray-400" size={32} />
+                      </div>
                     </div>
-                    <div className="flex-1 text-left">
-                      <h4 className="font-black text-brand-dark leading-tight">WATTer LAMP™</h4>
-                      <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mt-1">Saltwater Survival LED</p>
-                      <div className="mt-4 flex items-center gap-3">
-                         <div className="flex items-center border border-gray-200 rounded-full px-2 py-1 bg-white shadow-sm">
+                    <div className="flex-1 text-center sm:text-left">
+                      <h4 className="font-bold text-brand-dark leading-tight text-sm">AquaLume™</h4>
+                      <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest mt-0.5">Saltwater Survival LED</p>
+                      <div className="mt-1 flex items-center justify-center sm:justify-start gap-2">
+                         <div className="flex items-center border border-gray-200 rounded-full px-1.5 py-0.5 bg-white shadow-sm">
                             <button 
                               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                              className="p-1 hover:text-primary transition-colors disabled:opacity-30"
+                              className="p-0.5 hover:text-primary transition-colors disabled:opacity-30"
                               disabled={quantity <= 1}
                             >
-                              <Minus size={14} />
+                              <Minus size={12} />
                             </button>
-                            <span className="w-6 text-center text-xs font-black">{quantity}</span>
+                            <span className="w-5 text-center text-[10px] font-bold">{quantity}</span>
                             <button 
                               onClick={() => setQuantity(quantity + 1)}
-                              className="p-1 hover:text-primary transition-colors"
+                              className="p-0.5 hover:text-primary transition-colors"
                             >
-                              <Plus size={14} />
+                              <Plus size={12} />
                             </button>
                          </div>
-                         <span className="text-sm font-bold text-gray-400 ml-auto">{price} {currency}</span>
+                         <span className="text-xs font-bold text-gray-400">{price} {currency}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-2 p-4 bg-primary/5 rounded-3xl border border-primary/10">
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-500 font-medium font-secondary uppercase tracking-tighter text-[10px]">Subtotal ({quantity})</span>
-                      <span className="font-bold text-brand-dark">{totalAmount} {currency}</span>
+                  <div className="flex flex-col gap-2 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-gray-500">Subtotal</span>
+                      <span className="font-bold text-gray-900">{totalAmount} {currency}</span>
                     </div>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-500 font-medium font-secondary uppercase tracking-tighter text-[10px]">Priority Global Shipping</span>
-                      <span className="text-primary font-black uppercase text-[10px] tracking-widest">Free</span>
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-gray-500">Shipping</span>
+                      <span className="text-emerald-600 font-bold uppercase text-[10px]">Free</span>
                     </div>
-                    <div className="h-px bg-primary/10 my-1" />
+                    <div className="h-px bg-gray-200 my-1" />
                     <div className="flex justify-between items-center">
-                      <span className="font-black text-brand-dark uppercase tracking-tighter text-sm">Total</span>
-                      <span className="text-3xl font-black text-brand-dark tracking-tighter">{totalAmount} <span className="text-xs text-gray-400">{currency}</span></span>
+                      <span className="font-bold text-gray-900 uppercase text-[10px]">Total</span>
+                      <span className="text-lg sm:text-xl font-bold text-gray-900 tracking-tight">{totalAmount} <span className="text-xs text-gray-400 font-normal">{currency}</span></span>
                     </div>
                   </div>
                 </motion.div>
@@ -177,12 +179,12 @@ export const Checkout = ({ isOpen, onClose, price, currency }: CheckoutProps) =>
                     hidden: { opacity: 0, y: 10 },
                     show: { opacity: 1, y: 0 }
                   }}
-                  className="min-h-[150px] flex flex-col justify-center"
+                  className="w-full flex flex-col justify-center mt-2"
                 >
                   {isPending ? (
-                    <div className="flex flex-col items-center gap-4 text-gray-400">
-                      <Loader2 className="animate-spin" size={32} />
-                      <p className="text-sm font-bold uppercase tracking-widest">Loading PayPal...</p>
+                    <div className="flex flex-col items-center gap-2 text-gray-400">
+                      <Loader2 className="animate-spin" size={24} />
+                      <p className="text-[10px] font-bold uppercase tracking-widest">Loading PayPal...</p>
                     </div>
                   ) : (
                     <PayPalButtons 
@@ -211,7 +213,7 @@ export const Checkout = ({ isOpen, onClose, price, currency }: CheckoutProps) =>
                     hidden: { opacity: 0 },
                     show: { opacity: 1 }
                   }}
-                  className="text-[10px] text-gray-300 font-black uppercase tracking-[0.2em]"
+                  className="text-[9px] text-gray-300 font-bold uppercase tracking-[0.1em] text-center"
                 >
                   Secure Encryption • Powered by PayPal
                 </motion.p>
@@ -229,7 +231,7 @@ export const Checkout = ({ isOpen, onClose, price, currency }: CheckoutProps) =>
                 </div>
                 <div className="space-y-2">
                   <h2 className="text-3xl font-black text-brand-dark tracking-tighter">Order Success!</h2>
-                  <p className="text-gray-500 font-secondary">Your WATTer LAMP™ is on its way. Check your email for confirmation.</p>
+                  <p className="text-gray-500 font-secondary">Your AquaLume™ is on its way. Check your email for confirmation.</p>
                 </div>
                 <button 
                   onClick={onClose}
