@@ -137,7 +137,7 @@ export const Checkout = ({ isOpen, onClose, price, currency }: CheckoutProps) =>
                          <div className="flex items-center border border-gray-200 rounded-full px-2 py-1 bg-white shadow-sm">
                             <button 
                               onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                              className="p-1 hover:text-brand-blue transition-colors disabled:opacity-30"
+                              className="p-1 hover:text-primary transition-colors disabled:opacity-30"
                               disabled={quantity <= 1}
                             >
                               <Minus size={14} />
@@ -145,7 +145,7 @@ export const Checkout = ({ isOpen, onClose, price, currency }: CheckoutProps) =>
                             <span className="w-6 text-center text-xs font-black">{quantity}</span>
                             <button 
                               onClick={() => setQuantity(quantity + 1)}
-                              className="p-1 hover:text-brand-blue transition-colors"
+                              className="p-1 hover:text-primary transition-colors"
                             >
                               <Plus size={14} />
                             </button>
@@ -155,19 +155,19 @@ export const Checkout = ({ isOpen, onClose, price, currency }: CheckoutProps) =>
                     </div>
                   </div>
 
-                  <div className="flex flex-col gap-2 p-4 bg-brand-blue/5 rounded-3xl border border-brand-blue/10">
+                  <div className="flex flex-col gap-2 p-4 bg-primary/5 rounded-3xl border border-primary/10">
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-500 font-medium">Subtotal ({quantity} {quantity === 1 ? 'item' : 'items'})</span>
+                      <span className="text-gray-500 font-medium font-secondary uppercase tracking-tighter text-[10px]">Subtotal ({quantity})</span>
                       <span className="font-bold text-brand-dark">{totalAmount} {currency}</span>
                     </div>
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-500 font-medium">Shipping</span>
-                      <span className="text-green-500 font-bold uppercase text-[10px] tracking-widest">Free</span>
+                      <span className="text-gray-500 font-medium font-secondary uppercase tracking-tighter text-[10px]">Priority Global Shipping</span>
+                      <span className="text-primary font-black uppercase text-[10px] tracking-widest">Free</span>
                     </div>
-                    <div className="h-px bg-brand-blue/10 my-1" />
+                    <div className="h-px bg-primary/10 my-1" />
                     <div className="flex justify-between items-center">
-                      <span className="font-black text-brand-dark">Order Total</span>
-                      <span className="text-2xl font-black text-brand-blue">{totalAmount} {currency}</span>
+                      <span className="font-black text-brand-dark uppercase tracking-tighter text-sm">Total</span>
+                      <span className="text-3xl font-black text-brand-dark tracking-tighter">{totalAmount} <span className="text-xs text-gray-400">{currency}</span></span>
                     </div>
                   </div>
                 </motion.div>
