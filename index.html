@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WATTer LAMP™ | Saltwater Powered LED Lamp</title>
+    <meta name="description" content="Reliable light for emergencies, camping, and storms. Powered by saltwater, no batteries required." />
+    <script>
+      // Some environments have a read-only fetch getter. 
+      // We try to make it writable if possible, otherwise we leave it alone.
+      (function() {
+        try {
+          var originalFetch = window.fetch;
+          if (!originalFetch) return;
+
+          function tryDefine(obj, prop) {
+            try {
+              var desc = Object.getOwnPropertyDescriptor(obj, prop);
+              if (desc && !desc.writable && desc.configurable) {
+                Object.defineProperty(obj, prop, {
+                  value: originalFetch,
+                  writable: true,
+                  configurable: true,
+                  enumerable: true
+                });
+                return true;
+              }
+            } catch (e) {}
+            return false;
+          }
+
+          if (!tryDefine(window, 'fetch')) {
+            tryDefine(Window.prototype, 'fetch');
+          }
+
+          // Fallback: if we still can't set it, we try to redefine it as a getter/setter
+          // so that future assignments don't throw.
+          try {
+            var desc = Object.getOwnPropertyDescriptor(window, 'fetch');
+            if (desc && desc.configurable && !desc.set) {
+              Object.defineProperty(window, 'fetch', {
+                get: function() { return originalFetch; },
+                set: function(v) { originalFetch = v; },
+                configurable: true,
+                enumerable: true
+              });
+            }
+          } catch (e) {}
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body class="antialiased text-brand-dark">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

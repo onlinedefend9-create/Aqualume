@@ -1,0 +1,6 @@
+{
+  "name": "WATTer LAMP™ Store",
+  "description": "Premium one-product store for the WATTer LAMP™ Saltwater LED Lamp. High-converting landing page design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
