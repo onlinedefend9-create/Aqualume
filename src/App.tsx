@@ -36,10 +36,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Checkout } from "./components/Checkout";
 import { Footer } from "./components/Footer";
-import { PrivacyPolicy } from "./pages/PrivacyPolicy";
-import { TermsOfService } from "./pages/TermsOfService";
-import { ShippingPolicy } from "./pages/ShippingPolicy";
-import { RefundPolicy } from "./pages/RefundPolicy";
+import { LegalPage } from "./components/Legal";
 
 // Components
 const VectorDots = () => (
@@ -95,6 +92,10 @@ const FAQItem = ({ question, subtitle, answer }: { question: string, subtitle?: 
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [legalState, setLegalState] = useState<{ isOpen: boolean; section: "privacy" | "terms" | "legal" | "refund" }>({
+    isOpen: false,
+    section: "legal"
+  });
   const { scrollY } = useScroll();
   const buyButtonOpacity = useTransform(scrollY, [600, 800], [0, 1]);
   const buyButtonY = useTransform(scrollY, [600, 800], [20, 0]);
@@ -133,10 +134,7 @@ export default function App() {
   }), []);
 
   const pathname = window.location.pathname;
-  if (pathname === '/legal/privacy') return <PrivacyPolicy />;
-  if (pathname === '/legal/terms') return <TermsOfService />;
-  if (pathname === '/legal/shipping') return <ShippingPolicy />;
-  if (pathname === '/legal/refund') return <RefundPolicy />;
+  // Handle paths if needed, or stick to single page app state
 
   return (
     <PayPalScriptProvider options={paypalOptions}>
@@ -147,6 +145,11 @@ export default function App() {
           price="35.00" 
           currency="USD" 
         />
+        <LegalPage 
+          isOpen={legalState.isOpen}
+          onClose={() => setLegalState(prev => ({ ...prev, isOpen: false }))}
+          initialSection={legalState.section}
+        />
       {/* Navigation */}
       <header className={`fixed top-0 w-full z-[60] transition-all duration-500 ${isScrolled ? 'glass py-3 shadow-lg shadow-black/5 text-brand-dark' : 'bg-transparent py-8 text-white'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
@@ -154,7 +157,7 @@ export default function App() {
             <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/30" aria-hidden="true">
               <Droplets className="text-brand-dark w-6 h-6" />
             </div>
-            <span className="text-current font-secondary tracking-tighter uppercase text-xl">Aqua<span className="text-primary font-black">Lume™</span></span>
+            <span className="text-current font-sans tracking-tighter uppercase text-xl">Aqua<span className="text-primary font-black">Lume™</span></span>
           </a>
           <div className="flex items-center gap-6">
             <nav className={`hidden lg:flex items-center gap-8 text-sm font-bold ${isScrolled ? 'text-gray-400' : 'text-gray-300'}`} aria-label="Main Navigation">
@@ -238,7 +241,7 @@ export default function App() {
                 <div className="absolute inset-0 bg-primary/20 blur-[150px] rounded-full scale-90 -z-10 animate-pulse" />
                 <div className="relative rounded-[4rem] md:rounded-[6rem] overflow-hidden shadow-[0_100px_200px_-50px_rgba(0,0,0,0.8)] border-[1px] border-white/10 group-hover:shadow-[0_120px_250px_-60px_rgba(162,214,54,0.3)] transition-all duration-1000">
                   <img 
-                    src="/src/assets/images/aqualume_hero_cinematic_v2_1779194153162.png" 
+                    src="/src/assets/images/aqualume_product_shot_premium_1779219202665.png" 
                     alt="AquaLume Master Product Render" 
                     className="w-full h-auto transform group-hover:scale-105 transition-transform duration-[4s] ease-out"
                     loading="eager"
@@ -303,7 +306,7 @@ export default function App() {
                 className="md:col-span-12 relative rounded-[4rem] md:rounded-[6rem] overflow-hidden group h-[600px] md:h-[800px]"
               >
                 <img 
-                  src="/src/assets/images/aqualume_lifestyle_blackout_home_1779194189117.png" 
+                  src="/src/assets/images/aqualume_lifestyle_survival_expert_1779219222506.png" 
                   alt="AquaLume Emergency Blackout Safety" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[5s] ease-out"
                   loading="lazy"
@@ -375,7 +378,7 @@ export default function App() {
                  <div className="absolute inset-0 bg-primary/20 blur-[120px] rounded-full scale-125 -z-10 animate-pulse" />
                  <div className="relative rounded-[4rem] overflow-hidden border border-white/5 shadow-2xl shadow-black/80">
                     <img 
-                      src="/src/assets/images/aqualume_macro_led_detail_1779194241704.png" 
+                      src="/src/assets/images/aqualume_technical_diagram_element_1779219238572.png" 
                       alt="AquaLume Technical Specs Diagram" 
                       className="w-full h-auto transform group-hover:scale-105 transition-transform duration-[3s] ease-out"
                     />
@@ -781,7 +784,7 @@ export default function App() {
         </button>
       </motion.div>
 
-      <Footer />
+      <Footer onLegalClick={(section) => setLegalState({ isOpen: true, section })} />
       </div>
     </PayPalScriptProvider>
   );

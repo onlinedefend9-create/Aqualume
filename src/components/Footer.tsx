@@ -1,6 +1,18 @@
+import React from "react";
 import { Mail, Facebook, Instagram, Twitter, Shield, Truck, RotateCcw } from "lucide-react";
 
-export const Footer = () => {
+interface FooterProps {
+  onLegalClick?: (section: "privacy" | "terms" | "legal" | "refund") => void;
+}
+
+export const Footer = ({ onLegalClick }: FooterProps) => {
+  const handleLegalClick = (e: React.MouseEvent, section: "privacy" | "terms" | "legal" | "refund") => {
+    if (onLegalClick) {
+      e.preventDefault();
+      onLegalClick(section);
+    }
+  };
+
   return (
     <footer className="bg-brand-dark text-white pt-24 pb-32 border-t border-white/10">
       <div className="container mx-auto px-6 max-w-7xl">
@@ -29,10 +41,10 @@ export const Footer = () => {
           <div className="space-y-6">
             <h4 className="font-black uppercase tracking-[0.2em] text-xs text-primary">Company</h4>
             <ul className="space-y-3 text-sm text-gray-400 font-secondary">
-              <li><a href="/legal/privacy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
-              <li><a href="/legal/terms" className="hover:text-primary transition-colors">Terms of Service</a></li>
-              <li><a href="/legal/shipping" className="hover:text-primary transition-colors">Shipping Policy</a></li>
-              <li><a href="/legal/refund" className="hover:text-primary transition-colors">Refund Policy</a></li>
+              <li><a href="/legal/privacy" onClick={(e) => handleLegalClick(e, "privacy")} className="hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li><a href="/legal/terms" onClick={(e) => handleLegalClick(e, "terms")} className="hover:text-primary transition-colors">Terms of Service</a></li>
+              <li><a href="/legal/legal" onClick={(e) => handleLegalClick(e, "legal")} className="hover:text-primary transition-colors">Legal Notice</a></li>
+              <li><a href="/legal/refund" onClick={(e) => handleLegalClick(e, "refund")} className="hover:text-primary transition-colors">Refund Policy</a></li>
             </ul>
           </div>
 
