@@ -39,6 +39,16 @@ import { Footer } from "./components/Footer";
 import { LegalPage } from "./components/Legal";
 import { ChatInterface } from "./components/ChatInterface";
 
+// Asset Imports
+import heroImage from "./assets/images/aqualume_product_shot_premium_1779219202665.png";
+import blackoutImage from "./assets/images/aqualume_lifestyle_survival_expert_1779219222506.png";
+import rainSurvivalImage from "./assets/images/aqualume_rain_waterproof_action_1779194224010.png";
+import nightTentImage from "./assets/images/aqualume_lifestyle_tent_night_1779194171975.png";
+import techDiagram from "./assets/images/aqualume_technical_diagram_element_1779219238572.png";
+import step1Img from "./assets/images/aqualume_gear_setup_survival_1779194209010.png";
+import step2Img from "./assets/images/aqualume_macro_led_detail_1779194241704.png";
+import step3Img from "./assets/images/aqualume_hero_cinematic_v2_1779194153162.png";
+
 // Components
 const VectorDots = () => (
   <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="opacity-10">
@@ -243,7 +253,7 @@ export default function App() {
                 <div className="absolute inset-0 bg-primary/20 blur-[150px] rounded-full scale-90 -z-10 animate-pulse" />
                 <div className="relative rounded-[4rem] md:rounded-[6rem] overflow-hidden shadow-[0_100px_200px_-50px_rgba(0,0,0,0.8)] border-[1px] border-white/10 group-hover:shadow-[0_120px_250px_-60px_rgba(162,214,54,0.3)] transition-all duration-1000">
                   <img 
-                    src="/src/assets/images/aqualume_product_shot_premium_1779219202665.png" 
+                    src={heroImage} 
                     alt="AquaLume Master Product Render" 
                     className="w-full h-auto transform group-hover:scale-105 transition-transform duration-[4s] ease-out"
                     loading="eager"
@@ -308,7 +318,7 @@ export default function App() {
                 className="md:col-span-12 relative rounded-[4rem] md:rounded-[6rem] overflow-hidden group h-[600px] md:h-[800px]"
               >
                 <img 
-                  src="/src/assets/images/aqualume_lifestyle_survival_expert_1779219222506.png" 
+                  src={blackoutImage} 
                   alt="AquaLume Emergency Blackout Safety" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[5s] ease-out"
                   loading="lazy"
@@ -334,7 +344,7 @@ export default function App() {
                 className="md:col-span-7 relative rounded-[4rem] group overflow-hidden h-[500px] md:h-[700px]"
               >
                 <img 
-                  src="/src/assets/images/aqualume_rain_waterproof_action_1779194224010.png" 
+                  src={rainSurvivalImage} 
                   alt="AquaLume Wet Outdoor Survival" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[3s]"
                   loading="lazy"
@@ -356,7 +366,7 @@ export default function App() {
                 className="md:col-span-5 relative rounded-[4rem] group overflow-hidden h-[500px] md:h-[700px]"
               >
                 <img 
-                  src="/src/assets/images/aqualume_lifestyle_tent_night_1779194171975.png" 
+                  src={nightTentImage} 
                   alt="Waterproof Performance" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[3s]"
                   loading="lazy"
@@ -380,7 +390,7 @@ export default function App() {
                  <div className="absolute inset-0 bg-primary/20 blur-[120px] rounded-full scale-125 -z-10 animate-pulse" />
                  <div className="relative rounded-[4rem] overflow-hidden border border-white/5 shadow-2xl shadow-black/80">
                     <img 
-                      src="/src/assets/images/aqualume_technical_diagram_element_1779219238572.png" 
+                      src={techDiagram} 
                       alt="AquaLume Technical Specs Diagram" 
                       className="w-full h-auto transform group-hover:scale-105 transition-transform duration-[3s] ease-out"
                     />
@@ -442,21 +452,21 @@ export default function App() {
                   title: "Add Saltwater", 
                   desc: "Pour 15g of salt and 300ml of water into the chemical chamber.", 
                   icon: <Droplets className="w-12 h-12" />,
-                  img: "/src/assets/images/aqualume_gear_setup_survival_1779194209010.png"
+                  img: step1Img
                 },
                 { 
                   step: "02", 
                   title: "Activate", 
                   desc: "Shake gently to initiate the electrolytic reaction instantly.", 
                   icon: <RotateCcw className="w-12 h-12" />,
-                  img: "/src/assets/images/aqualume_macro_led_detail_1779194241704.png"
+                  img: step2Img
                 },
                 { 
                   step: "03", 
                   title: "Steady Light", 
                   desc: "Enjoy up to 120 hours of high-performance LED brightness.", 
                   icon: <Zap className="w-12 h-12" />,
-                  img: "/src/assets/images/aqualume_hero_cinematic_v2_1779194153162.png"
+                  img: step3Img
                 }
               ].map((s, i) => (
                 <div key={i} className="group text-center space-y-10">
