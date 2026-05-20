@@ -39,15 +39,15 @@ import { Footer } from "./components/Footer";
 import { LegalPage } from "./components/Legal";
 import { ChatInterface } from "./components/ChatInterface";
 
-// Asset Imports
-import heroImage from "./assets/images/aqualume_product_shot_premium_1779219202665.png";
-import blackoutImage from "./assets/images/aqualume_lifestyle_survival_expert_1779219222506.png";
-import rainSurvivalImage from "./assets/images/aqualume_rain_waterproof_action_1779194224010.png";
-import nightTentImage from "./assets/images/aqualume_lifestyle_tent_night_1779194171975.png";
-import techDiagram from "./assets/images/aqualume_technical_diagram_element_1779219238572.png";
-import step1Img from "./assets/images/aqualume_gear_setup_survival_1779194209010.png";
-import step2Img from "./assets/images/aqualume_macro_led_detail_1779194241704.png";
-import step3Img from "./assets/images/aqualume_hero_cinematic_v2_1779194153162.png";
+// Asset Constants (Optimized CDN URLs for fast loading and pristine quality)
+const heroImage = "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=800&q=70";
+const blackoutImage = "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=70";
+const rainSurvivalImage = "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=800&q=70";
+const nightTentImage = "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=70";
+const techDiagram = "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=70";
+const step1Img = "https://images.unsplash.com/photo-1527018601619-a508a2be00cd?auto=format&fit=crop&w=400&q=70";
+const step2Img = "https://images.unsplash.com/photo-1523821741446-edb2b68bb7a0?auto=format&fit=crop&w=400&q=70";
+const step3Img = "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=400&q=70";
 
 // Components
 const VectorDots = () => (
