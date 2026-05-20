@@ -11,6 +11,7 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@google/genai": "^2.4.0",
     "@paypal/react-paypal-js": "^9.2.0",
     "esbuild": "^0.28.0",
     "express": "^5.2.1",

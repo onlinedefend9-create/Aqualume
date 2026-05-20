@@ -37,6 +37,7 @@ import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { Checkout } from "./components/Checkout";
 import { Footer } from "./components/Footer";
 import { LegalPage } from "./components/Legal";
+import { ChatInterface } from "./components/ChatInterface";
 
 // Components
 const VectorDots = () => (
@@ -150,6 +151,7 @@ export default function App() {
           onClose={() => setLegalState(prev => ({ ...prev, isOpen: false }))}
           initialSection={legalState.section}
         />
+        <ChatInterface />
       {/* Navigation */}
       <header className={`fixed top-0 w-full z-[60] transition-all duration-500 ${isScrolled ? 'glass py-3 shadow-lg shadow-black/5 text-brand-dark' : 'bg-transparent py-8 text-white'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
