@@ -248,14 +248,16 @@ export default function App() {
                 initial={{ opacity: 0, scale: 0.9, y: 50 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 1.2, ease: "circOut", delay: 0.2 }}
-                className="relative w-full max-w-6xl group mt-10"
+                className="relative w-full max-w-4xl group mt-10"
               >
                 <div className="absolute inset-0 bg-primary/20 blur-[150px] rounded-full scale-90 -z-10 animate-pulse" />
-                <div className="relative rounded-[4rem] md:rounded-[6rem] overflow-hidden shadow-[0_100px_200px_-50px_rgba(0,0,0,0.8)] border-[1px] border-white/10 group-hover:shadow-[0_120px_250px_-60px_rgba(162,214,54,0.3)] transition-all duration-1000">
+                <div className="relative rounded-[4rem] md:rounded-[5rem] overflow-hidden shadow-[0_100px_200px_-50px_rgba(0,0,0,0.8)] border-[1px] border-white/10 group-hover:shadow-[0_120px_250px_-60px_rgba(162,214,54,0.3)] transition-all duration-1000">
                   <img 
                     src={heroImage} 
+                    width={1200}
+                    height={800}
                     alt="AquaLume Master Product Render" 
-                    className="w-full h-auto transform group-hover:scale-105 transition-transform duration-[4s] ease-out"
+                    className="w-full h-auto transform group-hover:scale-105 transition-transform duration-[4s] ease-out object-cover aspect-[3/2]"
                     loading="eager"
                     referrerPolicy="no-referrer"
                   />
@@ -315,10 +317,12 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 initial={{ opacity: 0, y: 50 }}
                 viewport={{ once: true }}
-                className="md:col-span-12 relative rounded-[4rem] md:rounded-[6rem] overflow-hidden group h-[600px] md:h-[800px]"
+                className="md:col-span-12 relative rounded-[4rem] overflow-hidden group h-[500px] md:h-[600px]"
               >
                 <img 
                   src={blackoutImage} 
+                  width={1600}
+                  height={900}
                   alt="AquaLume Emergency Blackout Safety" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[5s] ease-out"
                   loading="lazy"
@@ -341,10 +345,12 @@ export default function App() {
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: -50 }}
                 viewport={{ once: true }}
-                className="md:col-span-7 relative rounded-[4rem] group overflow-hidden h-[500px] md:h-[700px]"
+                className="md:col-span-7 relative rounded-[4rem] group overflow-hidden h-[400px] md:h-[500px]"
               >
                 <img 
                   src={rainSurvivalImage} 
+                  width={1000}
+                  height={700}
                   alt="AquaLume Wet Outdoor Survival" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[3s]"
                   loading="lazy"
@@ -363,10 +369,12 @@ export default function App() {
                 whileInView={{ opacity: 1, x: 0 }}
                 initial={{ opacity: 0, x: 50 }}
                 viewport={{ once: true }}
-                className="md:col-span-5 relative rounded-[4rem] group overflow-hidden h-[500px] md:h-[700px]"
+                className="md:col-span-5 relative rounded-[4rem] group overflow-hidden h-[400px] md:h-[500px]"
               >
                 <img 
                   src={nightTentImage} 
+                  width={800}
+                  height={700}
                   alt="Waterproof Performance" 
                   className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-[3s]"
                   loading="lazy"
@@ -388,9 +396,11 @@ export default function App() {
             <div className="grid lg:grid-cols-2 gap-20 items-center">
               <div className="relative group">
                  <div className="absolute inset-0 bg-primary/20 blur-[120px] rounded-full scale-125 -z-10 animate-pulse" />
-                 <div className="relative rounded-[4rem] overflow-hidden border border-white/5 shadow-2xl shadow-black/80">
+                 <div className="relative rounded-[4rem] overflow-hidden border border-white/5 shadow-2xl shadow-black/80 max-w-2xl mx-auto">
                     <img 
                       src={techDiagram} 
+                      width={800}
+                      height={600}
                       alt="AquaLume Technical Specs Diagram" 
                       className="w-full h-auto transform group-hover:scale-105 transition-transform duration-[3s] ease-out"
                     />
@@ -470,8 +480,8 @@ export default function App() {
                 }
               ].map((s, i) => (
                 <div key={i} className="group text-center space-y-10">
-                   <div className="relative mx-auto w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-8 border-gray-50 shadow-2xl group-hover:scale-105 transition-transform duration-700">
-                      <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
+                   <div className="relative mx-auto w-40 h-40 md:w-56 md:h-56 rounded-full overflow-hidden border-8 border-gray-50 shadow-2xl group-hover:scale-105 transition-transform duration-700">
+                      <img src={s.img} alt={s.title} width={300} height={300} className="w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
                          <span className="text-6xl font-black text-white">{s.step}</span>
                       </div>
