@@ -3,38 +3,17 @@ import mainImg from '../assets/images/regenerated_image_1779310653796.png';
 import life1Img from '../assets/images/aqualume_hero_cinematic_v2_1779194153162.png';
 import life2Img from '../assets/images/aqualume_blackout_lifestyle_1779190686659.png';
 import detailImg from '../assets/images/aqualume_detail_activation_v1_1779191688943.png';
+import PayPalCheckout from './PayPalCheckout';
 
 const Products: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
   const [selectedImage, setSelectedImage] = useState(mainImg);
-  const sectionRef = useRef<HTMLElement>(null);
-  
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      });
-    }, { threshold: 0.1 });
 
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   const images = [mainImg, life1Img, life2Img, detailImg];
 
   return (
     <section id="products" className="py-24 px-6 bg-[#0a0f1a]">
-      <div 
-        ref={sectionRef} 
-        className="max-w-6xl mx-auto"
-        style={{ 
-          opacity: isVisible ? 1 : 0,
-          transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
-          transition: 'all 1s ease-out'
-        }}
-      >
+      <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center">
           
           {/* Left: Image Gallery */}
@@ -98,22 +77,14 @@ const Products: React.FC = () => {
               ))}
             </ul>
             
-            <div className="flex flex-col sm:flex-row items-center gap-8 w-full">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-8 w-full border-t border-white/10 pt-8 mt-4">
               <div className="text-5xl font-black text-white whitespace-nowrap">
                 34.99 €
               </div>
               
-              <a 
-                href="https://www.aliexpress.com/item/1005012048993433.html" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto flex-1 bg-[#4ade80] text-[#151b27] px-10 py-5 rounded-full font-black text-xl uppercase tracking-widest relative overflow-hidden group transition-transform hover:scale-[1.02] active:scale-[0.98] text-center"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-3">
-                  Order Now
-                </span>
-                <div className="absolute inset-0 bg-white/30 scale-0 rounded-full group-active:scale-150 transition-transform duration-500 ease-out origin-center" />
-              </a>
+              <div className="flex-1 w-full sm:w-auto flex items-center justify-start max-w-[300px]">
+                <PayPalCheckout />
+              </div>
             </div>
           </div>
           

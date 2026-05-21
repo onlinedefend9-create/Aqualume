@@ -72,3 +72,25 @@
   .anim-fade-up { animation: fade-in-up 0.8s ease forwards; }
   .anim-bounce { animation: bounce-custom 2s ease-in-out infinite; }
 }
+
+#paypal-container-SFSQ384DXFELU span {
+  color: #60a1ff !important;
+}
+
+#paypal-container-SFSQ384DXFELU h3 #price-text {
+  color: #17ff17 !important;
+}
+
+#paypal-container-SFSQ384DXFELU p {
+  color: #e2e8db !important;
+}
+
+#paypal-container-SFSQ384DXFELU label {
+  font-weight: bold !important;
+  font-size: 17px !important;
+  color: #ececec !important;
+}
+
+#paypal-container-SFSQ384DXFELU select#quantity {
+  color: #97b7f7 !important;
+}

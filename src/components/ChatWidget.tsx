@@ -19,14 +19,14 @@ Product facts you know:
 - Design: Compact, portable, waterproof
 - Eco: Zero chemicals, zero batteries, sustainable
 - Price: 34.99 €
-- Order: https://www.aliexpress.com/item/1005012048993433.html
+- Order: https://www.paypal.com/checkoutnow
 
 Rules:
 - If the question is NOT about this product, reply exactly: "I'm only here to help with questions about the AquaLume Water Lamp 💧"
 - Always reply in the same language as the user
 - Keep answers short: 2-3 sentences max
 - Never invent features not listed above
-- If asked to order, provide the AliExpress link`;
+- If asked to order, provide the PayPal checkout link`;
 
 const ChatWidget: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
