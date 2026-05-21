@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { MessageSquare, X, Send, User, Bot, Loader2, Minimize2 } from 'lucide-react';
+import { MessageSquare, X, Send, User, Bot, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface Message {
@@ -7,7 +7,11 @@ interface Message {
   parts: [{ text: string }];
 }
 
-export const ChatInterface: React.FC = () => {
+interface ChatInterfaceProps {
+  language?: 'fr' | 'en';
+}
+
+export const ChatInterface: React.FC<ChatInterfaceProps> = ({ language = 'fr' }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<Message[]>([]);
@@ -46,11 +50,35 @@ export const ChatInterface: React.FC = () => {
       setHistory(prev => [...prev, { role: 'model', parts: [{ text: data.text }] }]);
     } catch (error) {
       console.error('Chat error:', error);
-      setHistory(prev => [...prev, { role: 'model', parts: [{ text: "I'm sorry, I encountered an error. Please try again later." }] }]);
+      const errTxt = language === 'en' 
+        ? "I'm sorry, I encountered an error. Please try again later."
+        : "Désolé, j'ai rencontré une erreur. Veuillez réessayer ultérieurement.";
+      setHistory(prev => [...prev, { role: 'model', parts: [{ text: errTxt }] }]);
     } finally {
       setIsLoading(false);
     }
   };
+
+  const strings = {
+    fr: {
+      botTitle: "Assistant AquaLume",
+      online: "En ligne",
+      welcomeTitle: "Bonjour ! Je suis votre Assistant AquaLume.",
+      welcomeDesc: "Comment puis-je vous aider à découvrir nos solutions d'éclairage et de purification aujourd'hui ?",
+      searching: "Recherche en cours...",
+      inputPlaceholder: "Posez votre question...",
+      powered: "Propulsé par l'Intelligence AquaLume"
+    },
+    en: {
+      botTitle: "AquaLume Assistant",
+      online: "Online",
+      welcomeTitle: "Hello! I am your AquaLume Assistant.",
+      welcomeDesc: "How can I help you explore our purification and lighting solutions today?",
+      searching: "Thinking...",
+      inputPlaceholder: "Ask your question...",
+      powered: "Powered by AquaLume Intelligence"
+    }
+  }[language];
 
   return (
     <>
@@ -79,10 +107,10 @@ export const ChatInterface: React.FC = () => {
                   <Bot className="text-primary w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-white text-lg">AquaLume Assistant</h3>
+                  <h3 className="font-bold text-white text-lg">{strings.botTitle}</h3>
                   <div className="flex items-center gap-2">
                     <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                    <span className="text-xs text-muted-foreground uppercase font-black tracking-widest">Online</span>
+                    <span className="text-xs text-muted-foreground uppercase font-black tracking-widest">{strings.online}</span>
                   </div>
                 </div>
               </div>
@@ -101,8 +129,8 @@ export const ChatInterface: React.FC = () => {
                 <div className="h-full flex flex-col items-center justify-center text-center space-y-4 px-4 opacity-60">
                   <Bot className="w-12 h-12 text-primary" />
                   <div>
-                    <p className="text-white font-bold">Hello! I'm your AquaLume Assistant.</p>
-                    <p className="text-sm text-muted-foreground mt-1">How can I help you discover our lighting and purification solutions today?</p>
+                    <p className="text-white font-bold">{strings.welcomeTitle}</p>
+                    <p className="text-sm text-muted-foreground mt-1">{strings.welcomeDesc}</p>
                   </div>
                 </div>
               )}
@@ -125,7 +153,7 @@ export const ChatInterface: React.FC = () => {
                 <div className="flex justify-start">
                   <div className="bg-muted text-foreground border border-border p-4 rounded-2xl rounded-tl-none flex items-center gap-3">
                     <Loader2 size={18} className="animate-spin text-primary" />
-                    <span className="text-sm">Thinking...</span>
+                    <span className="text-sm">{strings.searching}</span>
                   </div>
                 </div>
               )}
@@ -140,7 +168,7 @@ export const ChatInterface: React.FC = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Ask a question..."
+                  placeholder={strings.inputPlaceholder}
                   className="w-full bg-brand-dark border border-border rounded-xl py-3 px-4 pr-12 text-sm focus:outline-none focus:border-primary transition-colors text-white"
                 />
                 <button
@@ -152,7 +180,7 @@ export const ChatInterface: React.FC = () => {
                 </button>
               </div>
               <p className="text-[10px] text-center text-muted-foreground mt-3 uppercase font-bold tracking-[0.2em]">
-                Powered by AquaLume Intelligence
+                {strings.powered}
               </p>
             </div>
           </motion.div>

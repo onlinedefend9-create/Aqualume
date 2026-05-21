@@ -1,72 +1,82 @@
-import React from "react";
-import { Mail, Facebook, Instagram, Twitter, Shield, Truck, RotateCcw } from "lucide-react";
+import React from 'react';
+import { Droplets, Facebook, Instagram, Twitter } from 'lucide-react';
 
-interface FooterProps {
-  onLegalClick?: (section: "privacy" | "terms" | "legal" | "refund") => void;
-}
-
-export const Footer = ({ onLegalClick }: FooterProps) => {
-  const handleLegalClick = (e: React.MouseEvent, section: "privacy" | "terms" | "legal" | "refund") => {
-    if (onLegalClick) {
-      e.preventDefault();
-      onLegalClick(section);
-    }
-  };
-
+const Footer: React.FC = () => {
   return (
-    <footer className="bg-brand-dark text-white pt-24 pb-32 border-t border-white/10">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid md:grid-cols-4 gap-12 mb-20">
-          <div className="space-y-6 md:col-span-1">
-             <a href="#" className="text-2xl font-black tracking-tighter flex items-center gap-2">
-                <span className="text-white font-secondary tracking-tighter uppercase text-xl">Aqua<span className="text-primary font-black">Lume™</span></span>
-             </a>
-             <p className="text-gray-400 text-xs font-secondary leading-relaxed">The global standard for battery-free readiness. Engineered for survival, designed for longevity.</p>
-             <div className="flex gap-4">
-                <Instagram className="hover:text-primary cursor-pointer transition-colors" />
-                <Twitter className="hover:text-primary cursor-pointer transition-colors" />
-                <Facebook className="hover:text-primary cursor-pointer transition-colors" />
-             </div>
-          </div>
-          
-          <div className="space-y-6">
-            <h4 className="font-black uppercase tracking-[0.2em] text-xs text-primary">Shop</h4>
-            <ul className="space-y-3 text-sm text-gray-400 font-secondary">
-              <li><a href="#how-it-works" className="hover:text-primary transition-colors">How it works</a></li>
-              <li><a href="#features" className="hover:text-primary transition-colors">Features</a></li>
-              <li><a href="#reviews" className="hover:text-primary transition-colors">Reviews</a></li>
+    <footer className="bg-[#0a0f1a] border-t-2 border-[#4ade80]/20 pt-16 pb-8 px-6 relative z-10">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex justify-center mb-16">
+          <a href="#" className="flex items-center gap-2">
+            <Droplets className="text-[#4ade80] w-8 h-8" />
+            <span className="font-bold text-2xl tracking-wide uppercase text-white">
+              AQUA<span className="text-[#4ade80]">LUME</span>
+            </span>
+          </a>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 text-center md:text-left">
+          {/* Column 1 */}
+          <div>
+            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">About</h4>
+            <ul className="space-y-4 text-gray-400 font-light text-sm">
+              <li><a href="#" className="hover:text-[#4ade80] transition-colors">Our Mission</a></li>
+              <li><a href="#" className="hover:text-[#4ade80] transition-colors">Sustainability</a></li>
+              <li><a href="#" className="hover:text-[#4ade80] transition-colors">Technology</a></li>
+              <li><a href="#" className="hover:text-[#4ade80] transition-colors">Careers</a></li>
             </ul>
           </div>
 
-          <div className="space-y-6">
-            <h4 className="font-black uppercase tracking-[0.2em] text-xs text-primary">Company</h4>
-            <ul className="space-y-3 text-sm text-gray-400 font-secondary">
-              <li><a href="/legal/privacy" onClick={(e) => handleLegalClick(e, "privacy")} className="hover:text-primary transition-colors">Privacy Policy</a></li>
-              <li><a href="/legal/terms" onClick={(e) => handleLegalClick(e, "terms")} className="hover:text-primary transition-colors">Terms of Service</a></li>
-              <li><a href="/legal/legal" onClick={(e) => handleLegalClick(e, "legal")} className="hover:text-primary transition-colors">Legal Notice</a></li>
-              <li><a href="/legal/refund" onClick={(e) => handleLegalClick(e, "refund")} className="hover:text-primary transition-colors">Refund Policy</a></li>
+          {/* Column 2 */}
+          <div>
+            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">Products</h4>
+            <ul className="space-y-4 text-gray-400 font-light text-sm">
+              <li><a href="#" className="hover:text-[#4ade80] transition-colors">AquaLume Pro</a></li>
+              <li><a href="#" className="hover:text-[#4ade80] transition-colors">AquaLume Mini</a></li>
+              <li><a href="#" className="hover:text-[#4ade80] transition-colors">Accessories</a></li>
+              <li><a href="#" className="hover:text-[#4ade80] transition-colors">Support center</a></li>
             </ul>
           </div>
 
-          <div className="space-y-6">
-            <h4 className="font-black uppercase tracking-[0.2em] text-xs text-primary">Contact</h4>
-            <div className="flex items-center gap-3 text-sm text-gray-400 font-secondary">
-               <Mail size={16} className="text-primary" />
-               <a href="mailto:support@aqualume.com" className="hover:text-primary transition-colors">support@aqualume.com</a>
+          {/* Column 3 */}
+          <div className="flex flex-col items-center md:items-start">
+            <h4 className="font-bold text-white mb-6 uppercase tracking-wider text-sm">Stay Updated</h4>
+            <p className="text-gray-400 text-sm font-light mb-4">Join our newsletter for exclusive offers and updates.</p>
+            <div className="flex w-full max-w-sm">
+              <input 
+                type="email" 
+                placeholder="Email address" 
+                className="bg-[#151b27] text-white px-4 py-3 rounded-l-full flex-1 border border-white/10 focus:outline-none focus:border-[#4ade80] text-sm"
+              />
+              <button className="bg-[#4ade80] text-[#151b27] px-6 py-3 rounded-r-full font-bold text-sm hover:brightness-110 transition-all">
+                Subscribe
+              </button>
             </div>
-            <p className="text-xs text-gray-500 mt-4 italic">Available 24/7 for emergency support</p>
+            <div className="flex gap-4 mt-8">
+              <a href="#" className="w-10 h-10 rounded-full bg-[#151b27] border border-white/5 flex items-center justify-center text-gray-400 hover:text-[#4ade80] hover:border-[#4ade80] transition-colors">
+                <Facebook size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-[#151b27] border border-white/5 flex items-center justify-center text-gray-400 hover:text-[#4ade80] hover:border-[#4ade80] transition-colors">
+                <Instagram size={18} />
+              </a>
+              <a href="#" className="w-10 h-10 rounded-full bg-[#151b27] border border-white/5 flex items-center justify-center text-gray-400 hover:text-[#4ade80] hover:border-[#4ade80] transition-colors">
+                <Twitter size={18} />
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-gray-400 font-bold uppercase tracking-[0.1em] w-full mt-4">
-           <p>© 2026 AquaLume™. All rights reserved.</p>
-           <div className="flex flex-wrap justify-center gap-6">
-              <div className="flex items-center gap-1.5"><Shield size={12} /> Secure Checkout</div>
-              <div className="flex items-center gap-1.5"><Truck size={12} /> Global Express</div>
-              <div className="flex items-center gap-1.5"><RotateCcw size={12} /> 30-Day Guarantee</div>
-           </div>
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-center">
+          <p className="text-gray-500 text-sm font-light">
+            &copy; {new Date().getFullYear()} AquaLume. All rights reserved.
+          </p>
+          <div className="flex gap-6 text-sm text-gray-500 font-light">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          </div>
         </div>
       </div>
     </footer>
   );
 };
+
+export default Footer;
