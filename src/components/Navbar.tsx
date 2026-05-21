@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       <div className={`md:hidden absolute top-full left-0 w-full bg-[#0a0f1a]/95 backdrop-blur-lg border-b border-white/10 transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? 'max-h-80' : 'max-h-0'}`}>
-        <div className="flex flex-col p-6 gap-6 text-center text-lg font-medium">
+        <div className="flex flex-col p-6 gap-6 text-center text-lg font-medium text-white">
           <a href="#" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#4ade80]">Home</a>
           <a href="#products" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#4ade80]">Products</a>
           <a href="#how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-[#4ade80]">How It Works</a>
