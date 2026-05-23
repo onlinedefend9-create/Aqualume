@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { Star } from 'lucide-react';
+import { useLanguage } from '../lib/LanguageContext';
 
 const Testimonials: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const { t } = useLanguage();
   
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -18,15 +20,15 @@ const Testimonials: React.FC = () => {
   }, []);
 
   const reviews = [
-    { text: "The water tastes incredibly pure, and the ambient lighting transforms my kitchen completely.", name: "Sarah J.", loc: "Seattle, WA", initials: "SJ", color: "bg-emerald-600" },
-    { text: "Setup was a breeze. I love the minimalist design and the glowing indicator feels very futuristic.", name: "Marcus T.", loc: "Austin, TX", initials: "MT", color: "bg-blue-600" },
-    { text: "Best investment for our home. The peace of mind combined with the aesthetic is unbeatable.", name: "Elena R.", loc: "Denver, CO", initials: "ER", color: "bg-indigo-600" }
+    { text: t.testi1Text, name: "Sarah J.", loc: "Paris, FR", initials: "SJ", color: "bg-emerald-600" },
+    { text: t.testi2Text, name: "Marcus T.", loc: "Lyon, FR", initials: "MT", color: "bg-blue-600" },
+    { text: t.testi3Text, name: "Elena R.", loc: "Geneva, CH", initials: "ER", color: "bg-indigo-600" }
   ];
 
   return (
     <section className="py-24 px-6 bg-[#0a0f1a]">
       <div ref={sectionRef} className="max-w-7xl mx-auto opacity-0 translate-y-10 transition-all duration-1000 flex flex-col pt-10 pb-10">
-        <h2 className="text-4xl md:text-5xl font-black text-center mb-16">What People Say</h2>
+        <h2 className="text-4xl md:text-5xl font-black text-center mb-16">{t.testimonialsTitle}</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {reviews.map((rev, i) => (

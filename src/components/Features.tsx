@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Droplets, Sparkles, Leaf } from 'lucide-react';
+import { useLanguage } from '../lib/LanguageContext';
 
 const Features: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean[]>([false, false, false]);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -32,18 +34,18 @@ const Features: React.FC = () => {
   const features = [
     {
       icon: <Droplets size={32} className="text-[#4ade80]" />,
-      title: "Pure Water",
-      desc: "Advanced UV-C purification technology eliminates 99.99% of harmful pathogens instantly.",
+      title: t.featCleanEnergyTitle,
+      desc: t.featCleanEnergyDesc,
     },
     {
       icon: <Sparkles size={32} className="text-[#4ade80]" />,
-      title: "Smart Light",
-      desc: "Adaptive LED system provides perfect ambient lighting, adjusting to your environment naturally.",
+      title: t.featSmartLightTitle,
+      desc: t.featSmartLightDesc,
     },
     {
       icon: <Leaf size={32} className="text-[#4ade80]" />,
-      title: "Eco Friendly",
-      desc: "Zero chemical additives and sustainable design minimizes your carbon footprint effortlessly.",
+      title: t.featEcoTitle,
+      desc: t.featEcoDesc,
     }
   ];
 
@@ -51,8 +53,8 @@ const Features: React.FC = () => {
     <section id="features" className="py-24 px-6 bg-[#151b27]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black mb-4">Mastering the Elements</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">Harnessing the power of advanced technology to deliver unparalleled purity and illumination.</p>
+          <h2 className="text-4xl md:text-5xl font-black mb-4">{t.featuresTitle}</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">{t.featuresSubtitle}</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

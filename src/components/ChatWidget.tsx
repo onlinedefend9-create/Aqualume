@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { X, Send, Droplets } from 'lucide-react';
+import { useLanguage } from '../lib/LanguageContext';
 
 interface Message {
   role: 'user' | 'assistant';
@@ -34,14 +35,22 @@ const ChatWidget: React.FC = () => {
   const [input, setInput] = useState('');
   const [unreadCount, setUnreadCount] = useState(1);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { language } = useLanguage();
 
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      role: 'assistant',
-      content: "Hi! 👋 I'm the AquaLume assistant. Ask me anything about the AquaLume Water Lamp — how it works, features, pricing, or how to order.",
-      timestamp: new Date()
-    }
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
+
+  useEffect(() => {
+    // Set dynamic welcome greeting when language changes
+    setMessages([
+      {
+        role: 'assistant',
+        content: language === 'fr' 
+          ? "Bonjour ! 👋 Je suis l'assistant AquaLume. Posez-moi des questions sur la lampe AquaLume : fonctionnement, prix, options, ou commande."
+          : "Hi! 👋 I'm the AquaLume assistant. Ask me anything about the AquaLume Water Lamp — how it works, features, pricing, or how to order.",
+        timestamp: new Date()
+      }
+    ]);
+  }, [language]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -100,7 +109,9 @@ const ChatWidget: React.FC = () => {
       console.error(err);
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: "Oops! We're experiencing connection issues right now. Please try again later.",
+        content: language === 'fr' 
+          ? "Oups ! Nous rencontrons des difficultés de connexion pour le moment. Veuillez réessayer plus tard."
+          : "Oops! We're experiencing connection issues right now. Please try again later.",
         timestamp: new Date()
       }]);
     } finally {
@@ -221,14 +232,14 @@ const ChatWidget: React.FC = () => {
           <div ref={messagesEndRef} className="h-2" />
         </div>
 
-        {/* Input */}
+        {/* Input Form */}
         <div className="p-3 pb-[max(12px,env(safe-area-inset-bottom))] bg-[#151b27] border-t border-white/5 flex-shrink-0">
           <form onSubmit={handleSend} className="flex items-center gap-2">
             <input 
               type="text" 
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about AquaLume..."
+              placeholder={language === 'fr' ? "Poser une question..." : "Ask about AquaLume..."}
               className="flex-1 bg-transparent text-white text-sm px-3 py-2.5 placeholder-gray-500 focus:outline-none"
             />
             <button 

@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Sparkles, Droplet, Zap } from 'lucide-react';
+import { useLanguage } from '../lib/LanguageContext';
 
 const HowItWorks: React.FC = () => {
   const [isVisible, setIsVisible] = useState<boolean[]>([false, false, false]);
   const stepsR = useRef<(HTMLDivElement | null)[]>([]);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries) => {
@@ -24,17 +26,17 @@ const HowItWorks: React.FC = () => {
   }, []);
 
   const steps = [
-    { title: "Connect", desc: "Plug in your unit to a standard power source.", icon: <Zap size={32} /> },
-    { title: "Purify", desc: "Water flows through our advanced UV-C filters.", icon: <Droplet size={32} /> },
-    { title: "Illuminate", desc: "Smart LED lighting activates, indicating purity.", icon: <Sparkles size={32} /> }
+    { title: t.step1Title, desc: t.step1Desc, icon: <Droplet size={32} /> },
+    { title: t.step2Title, desc: t.step2Desc, icon: <Sparkles size={32} /> },
+    { title: t.step3Title, desc: t.step3Desc, icon: <Zap size={32} /> }
   ];
 
   return (
     <section id="how-it-works" className="py-24 px-6 bg-[#151b27] relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center mb-20">
-          <h2 className="text-4xl md:text-5xl font-black mb-4">How It Works</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">Three simple steps to absolute purity and ambient light.</p>
+          <h2 className="text-4xl md:text-5xl font-black mb-4">{t.howItWorksTitle}</h2>
+          <p className="text-gray-400 max-w-2xl mx-auto text-lg">{t.howItWorksSubtitle}</p>
         </div>
 
         <div className="relative">

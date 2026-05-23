@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Droplets, ArrowDown } from 'lucide-react';
 import heroBg from '../assets/images/aqualume_hero_cinematic_v2_1779194153162.png';
+import { useLanguage } from '../lib/LanguageContext';
 
 interface Particle {
   id: number;
@@ -12,6 +13,7 @@ interface Particle {
 
 const HeroStory: React.FC = () => {
   const [particles, setParticles] = useState<Particle[]>([]);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const newParticles: Particle[] = Array.from({ length: 20 }).map((_, i) => ({
@@ -77,17 +79,17 @@ const HeroStory: React.FC = () => {
         </div>
         
         <h1 className="text-5xl md:text-8xl font-black tracking-tight leading-tight mb-6 flex flex-col items-center" style={{ animation: "fade-in-up 1s ease forwards 0.3s" }}>
-          <span className="text-white block">Pure Light.</span>
-          <span className="text-[#4ade80] block" style={{ animation: "glow-pulse 4s infinite" }}>Pure Water.</span>
+          <span className="text-white block">{t.heroTitle1}</span>
+          <span className="text-[#4ade80] block" style={{ animation: "glow-pulse 4s infinite" }}>{t.heroTitle2}</span>
         </h1>
         
         <p className="text-lg md:text-2xl text-gray-300 font-light max-w-2xl mx-auto mb-12" style={{ animation: "fade-in-up 1s ease forwards 0.6s" }}>
-          Advanced water purification meets intelligent lighting.
+          {t.heroSubtitle}
         </p>
         
         <div style={{ animation: "fade-in-up 1s ease forwards 0.9s" }}>
           <a href="#products" className="inline-block bg-[#4ade80] text-[#151b27] px-10 py-4 rounded-full font-bold text-lg uppercase tracking-wide transition-transform hover:scale-105 active:scale-95 relative overflow-hidden group">
-            <span className="relative z-10">Discover AquaLume</span>
+            <span className="relative z-10">{t.heroCTA}</span>
             <div className="absolute inset-0 bg-white/30 scale-0 rounded-full group-active:scale-150 transition-transform duration-500 ease-out origin-center" />
           </a>
         </div>
