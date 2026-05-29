@@ -9,7 +9,7 @@
 }
 
 @layer base {
-  html { scroll-behavior: smooth; }
+  /* html { scroll-behavior: smooth; } Removed to prevent INP blocking on Chrome */
   body {
     font-family: "Poppins", sans-serif;
     color: white;
