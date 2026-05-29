@@ -140,7 +140,7 @@ async function startServer() {
 
   app.get("/api/video", async (req, res) => {
     const videoId = "1Zv9iP-VuwHc_bHPiIKyubeHWFk9FMFe7";
-    const url = `https://docs.google.com/uc?export=download&id=${videoId}`;
+    const initialUrl = `https://docs.google.com/uc?export=download&id=${videoId}`;
     
     try {
       const headers: Record<string, string> = {
@@ -150,23 +150,23 @@ async function startServer() {
         headers['Range'] = req.headers.range;
       }
       
-      let response = await fetch(url, { headers });
-      
+      let response = await fetch(initialUrl, { headers });
       const contentType = response.headers.get("content-type") || "";
-      if (contentType.includes("text/html")) {
+      
+      if (contentType.includes("text/html") || response.status === 200) {
         const bodyText = await response.text();
         const confirmMatch = bodyText.match(/confirm=([a-zA-Z0-9_]+)/);
         if (confirmMatch) {
-          const confirmToken = confirmMatch[1];
           const cookies = response.headers.get('set-cookie') || '';
+          const confirmedUrl = `https://docs.google.com/uc?export=download&id=${videoId}&confirm=${confirmMatch[1]}`;
           
-          const confirmedUrl = `https://docs.google.com/uc?export=download&id=${videoId}&confirm=${confirmToken}`;
           const confirmedHeaders: Record<string, string> = { ...headers };
-          if (cookies) confirmedHeaders['Cookie'] = cookies;
+          if (cookies) {
+             const cookieStr = cookies.split(';')[0];
+             confirmedHeaders['Cookie'] = cookieStr;
+          }
           
           response = await fetch(confirmedUrl, { headers: confirmedHeaders });
-        } else {
-          return res.status(500).send("Video extraction failed.");
         }
       }
       
