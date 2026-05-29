@@ -111,15 +111,19 @@ const HeroStory: React.FC = () => {
           </div>
 
           {/* Premium High-Contrast Video Container */}
-          <div className="w-full aspect-video rounded-3xl overflow-hidden border-2 border-[#4ade80]/30 shadow-[0_0_60px_rgba(74,222,128,0.25)] relative bg-black transition-all duration-300 hover:border-[#4ade80]/60 hover:shadow-[0_0_80px_rgba(74,222,128,0.35)]">
-            <iframe 
-              src="https://drive.google.com/file/d/1Zv9iP-VuwHc_bHPiIKyubeHWFk9FMFe7/preview" 
-              className="absolute top-0 left-0 w-full h-full"
-              allow="autoplay; encrypted-media"
-              allowFullScreen
-              style={{ border: 'none' }}
-              title="Watter Lamp Showcase"
-            />
+          <div className="w-full aspect-video rounded-3xl overflow-hidden border-2 border-[#4ade80]/30 shadow-[0_0_60px_rgba(74,222,128,0.25)] relative bg-black transition-all duration-300 hover:border-[#4ade80]/60 hover:shadow-[0_0_80px_rgba(74,222,128,0.35)] flex items-center justify-center group">
+            <video 
+              controls 
+              autoPlay 
+              muted 
+              loop 
+              playsInline 
+              preload="metadata"
+              className="absolute top-0 left-0 w-full h-full object-cover select-none pointer-events-auto z-10"
+            >
+              <source src="/api/video" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
 
           {/* User note for interaction */}
