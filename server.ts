@@ -146,13 +146,9 @@ async function startServer() {
       const headers: HeadersInit = {
         'User-Agent': req.headers['user-agent'] || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36',
       };
-      if (req.headers.range) {
-        headers['Range'] = req.headers.range;
-      }
       
       let response = await fetch(url, { headers });
       
-      // If we encounter standard Google Drive virus warning page (it sends HTML instead of audio/video bytes)
       const contentType = response.headers.get("content-type") || "";
       if (contentType.includes("text/html")) {
         const bodyText = await response.text();
@@ -160,44 +156,13 @@ async function startServer() {
         if (confirmMatch) {
           const confirmToken = confirmMatch[1];
           const confirmedUrl = `https://docs.google.com/uc?export=download&confirm=${confirmToken}&id=${videoId}`;
-          response = await fetch(confirmedUrl, { headers });
+          return res.redirect(302, confirmedUrl);
         }
       }
       
-      // Propagate status and essential headers for Safari streaming and responsive seek control
-      res.status(response.status);
-      response.headers.forEach((value, key) => {
-        const lowerKey = key.toLowerCase();
-        if (
-          lowerKey === 'content-type' || 
-          lowerKey === 'content-length' || 
-          lowerKey === 'content-range' || 
-          lowerKey === 'accept-ranges'
-        ) {
-          res.setHeader(key, value);
-        }
-      });
-      
-      if (!res.getHeader('content-type')) {
-        res.setHeader('content-type', 'video/mp4');
-      }
-      if (!res.getHeader('accept-ranges')) {
-        res.setHeader('accept-ranges', 'bytes');
-      }
-      
-      // Stream payload
-      const webStream = response.body;
-      if (webStream) {
-        const reader = webStream.getReader();
-        while (true) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          res.write(Buffer.from(value));
-        }
-      }
-      res.end();
+      res.redirect(302, url);
     } catch (error) {
-      console.error("Error piping Google Drive stream:", error);
+      console.error("Error redirecting to Google Drive stream:", error);
       res.redirect(url);
     }
   });
